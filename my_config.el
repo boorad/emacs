@@ -7,7 +7,8 @@
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configuration for Erlang mode
 (add-to-list 'load-path "~/dev/emacs/custom_keys") ;; Custom keys config
 (add-to-list 'load-path "~/dev/emacs/flymake") ;; Flymake syntax checker
-(add-to-list 'load-path "~/dev/emacs/git") ;; Git mode
+;;(add-to-list 'load-path "~/dev/emacs/git") ;; Git mode
+(add-to-list 'load-path "~/dev/emacs/magit") ;; magit mode
 (add-to-list 'load-path "~/dev/emacs/distel/elisp") ;; Distel package
 (add-to-list 'load-path "~/dev/emacs/whitespace") ;; Whitespace package
 (add-to-list 'load-path "~/dev/emacs/autosave") ;; Autosave config
@@ -15,7 +16,8 @@
 (require 'erlang_mode_config) ;; Loading Erlang mode
 (require 'custom_keys_config) ;; custom key bindings
 (require 'flymake_config) ;; Loading flymake
-(require 'git) ;; Loading git
+;;(require 'git) ;; Loading git
+(require 'magit) ;; Loading magit
 (require 'distel) ;; Loading distel
 (require 'whitespace_config) ;; Loading whitespace
 (require 'autosave_config) ;; Configures autosaving
@@ -56,12 +58,12 @@
   ;; prevent annoying hang-on-compile
   (defvar inferior-erlang-prompt-timeout t)
   ;; when starting an Erlang shell in Emacs, default in the node name
-  (setq inferior-erlang-machine-options '("-sname" "emacs"))
+  (setq inferior-erlang-machine-options '("-sname" "boot"))
   ;; tell distel to default to that node
   (setq erl-nodename-cache
 	(make-symbol
 	 (concat
-	  "emacs@"
+	  "boot@"
 	  ;; MAC OS X uses "name.local" instead of "name," this should work
 	  ;; pretty much anywhere w/o having to much with NetInfo
 	  (car (split-string (shell-command-to-string "hostname"))))))
