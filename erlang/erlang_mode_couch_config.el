@@ -23,7 +23,8 @@
           "-dini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/default_dev.ini"
           "-lini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/local_dev.ini"
           "-pidfile" "/Users/brad/dev/boorad/dbcore/tmp/run/couchdb/couchdb.pid"
-          "-start" "couch_app"))
+          ;;"-s" "couch_app" ;; this would start couch automatically
+          ))
 
   ;; tell distel to default to that node
   (setq erl-nodename-cache
