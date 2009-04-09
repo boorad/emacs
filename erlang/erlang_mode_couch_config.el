@@ -1,6 +1,6 @@
 (provide 'erlang_mode_couch_config)
 
-(add-to-list 'load-path "/opt/local/lib/erlang/lib/tools-2.6.2/emacs")
+(add-to-list 'load-path "/opt/local/lib/erlang/lib/tools-2.6.3/emacs")
 (require 'erlang-start)
 (setq erlang-indent-level 4)
 (add-to-list 'exec-path "/opt/local/lib/erlang/bin")

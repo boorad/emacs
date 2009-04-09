@@ -1,5 +1,8 @@
 (provide 'my_config)
 
+;; color-theme
+(add-to-list 'load-path "~/dev/emacs/color-theme") ;; Configuration for color-theme
+
 ;; Tweaking editing environment
 (setq-default show-trailing-whitespace t)
 ;;(add-to-list 'default-frame-alist '(alpha . (100 70)))
