@@ -20,8 +20,7 @@
           "-pa" "/Users/brad/dev/boorad/dbcore/src/couchdb"
           "-pa" "/Users/brad/dev/boorad/dbcore/src/mochiweb"
           "-pa" "/Users/brad/dev/boorad/dbcore/src/ibrowse"
-          "-dini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/default_dev.ini"
-          "-lini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/local_dev.ini"
+          "-ini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/default_dev.ini,/Users/brad/dev/boorad/dbcore/etc/couchdb/local_dev.ini"
           "-pidfile" "/Users/brad/dev/boorad/dbcore/tmp/run/couchdb/couchdb.pid"
           ;;"-s" "couch_app" ;; this would start couch automatically
           ))
