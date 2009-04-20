@@ -6,7 +6,7 @@
 (add-to-list 'exec-path "/opt/local/lib/erlang/bin")
 (setq erlang-root-dir "/opt/local/lib/erlang")
 
-(setq erlang-skel-mail-address "brad@sankatygroup.com")
+(setq erlang-skel-mail-address "brad@cloudant.com")
 
 ;; erl params for couchdb
 (add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
@@ -15,13 +15,18 @@
   (defvar inferior-erlang-prompt-timeout t)
   ;; when starting an Erlang shell in Emacs, default in the node name
   (setq inferior-erlang-machine-options
-        '("-sname" "couchdev"
+        '("-sname" "couchdb1"
           "-smp" "auto" "errlog_type" "error" "+K" "true"
+          "+P" "250000"
           "-pa" "/Users/brad/dev/boorad/dbcore/src/couchdb"
           "-pa" "/Users/brad/dev/boorad/dbcore/src/mochiweb"
           "-pa" "/Users/brad/dev/boorad/dbcore/src/ibrowse"
-          "-ini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/default_dev.ini,/Users/brad/dev/boorad/dbcore/etc/couchdb/local_dev.ini"
+          "-pa" "/Users/brad/dev/boorad/dbcore/src/cloudant"
+          ;"-env" "ERL_LIBS" "/Users/brad/dev/boorad/dbcore/src"
+          "-couch_ini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/default_dev.ini,/Users/brad/dev/boorad/dbcore/etc/couchdb/local_dev.ini,/Users/brad/dev/boorad/dbcore/etc/couchdb/cluster.ini"
           "-pidfile" "/Users/brad/dev/boorad/dbcore/tmp/run/couchdb/couchdb.pid"
+          "-ping" "http://localhost:5984/_cluster" ;; attach to cluster
+          "-setcookie" "doubledoozie" ;; clustering
           ;;"-s" "couch_app" ;; this would start couch automatically
           ))
 
@@ -29,7 +34,7 @@
   (setq erl-nodename-cache
 	(make-symbol
 	 (concat
-	  "couchdev@"
+	  "couchdb1@"
 	  ;; MAC OS X uses "name.local" instead of "name," this should work
 	  ;; pretty much anywhere w/o having to much with NetInfo
 	  (car (split-string (shell-command-to-string "hostname"))))))
