@@ -23,7 +23,10 @@
           "-pa" "/Users/brad/dev/boorad/dbcore/src/ibrowse"
           "-pa" "/Users/brad/dev/boorad/dbcore/src/cloudant"
           ;"-env" "ERL_LIBS" "/Users/brad/dev/boorad/dbcore/src"
-          "-couch_ini" "/Users/brad/dev/boorad/dbcore/etc/couchdb/default_dev.ini,/Users/brad/dev/boorad/dbcore/etc/couchdb/local_dev.ini,/Users/brad/dev/boorad/dbcore/etc/couchdb/cluster.ini"
+          "-couch_ini"
+          "/Users/brad/dev/boorad/dbcore/etc/couchdb/default_dev.ini"
+          "/Users/brad/dev/boorad/dbcore/etc/couchdb/local_dev.ini"
+          ;;"/Users/brad/dev/boorad/dbcore/etc/couchdb/cluster.ini"
           "-pidfile" "/Users/brad/dev/boorad/dbcore/tmp/run/couchdb/couchdb.pid"
           "-ping" "http://localhost:5984/_cluster" ;; attach to cluster
           "-setcookie" "doubledoozie" ;; clustering
