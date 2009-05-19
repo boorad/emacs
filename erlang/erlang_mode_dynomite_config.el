@@ -19,6 +19,7 @@
   ;; when starting an Erlang shell in Emacs, default in the node name
   (setq inferior-erlang-machine-options
         '("-sname" "dynomite"
+          "-boot" "start_sasl"
           "+K" "true"
           "+A" "30"
           "+P" "250000"
@@ -27,7 +28,9 @@
           "-pa" "/Users/brad/dev/erlang/dynomite/deps/mochiweb/ebin"
           "-pa" "/Users/brad/dev/erlang/dynomite/deps/rfc4627/ebin"
           "-pa" "/Users/brad/dev/erlang/dynomite/deps/thrift/ebin"
-          "-c" "/Users/brad/dev/erlang/dynomite/config.json"
+          "-priv_dir" "/Users/brad/dev/erlang/dynomite/etest/log"
+;          "-config" "test"
+          "-dynomite" "config" "\"/Users/brad/dev/erlang/dynomite/config.json\""
           "-setcookie" "doubledoozie"
           ))
 

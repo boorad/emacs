@@ -1,7 +1,9 @@
-(defun my-erlang-compile (arg)
+(defun my-erlang-compile (args)
   "Compile the file in the current buffer."
 
   (interactive "P")
+;;  (save-current-buffer
+;;    (inferior-erlang-compile))
   (save-some-buffers)
   (or (inferior-erlang-running-p)
       (save-excursion
@@ -24,14 +26,14 @@
     (setq end (inferior-erlang-send-command
 	       (if erlang-compile-use-outdir
 		   (if current-prefix-arg
-		       (format "c(\"%s\", [{outdir, \"%s\"}, debug_info, export_all])." noext dir)
-		     (format "c(\"%s\", [{outdir, \"%s\"}])." noext dir))
+		       (format "c(\"%s\", [{outdir, \"%s\"}, debug_info, export_all, {d,'TEST'}])." noext dir)
+		     (format "c(\"%s\", [{outdir, \"%s\"},  {d,'TEST'}])." noext dir))
 		 (format
 		  (concat
 		   "f(%s), {ok, %s} = file:get_cwd(), "
 		   "file:set_cwd(\"%s\"), "
 		   (if current-prefix-arg
-		       "%s = c(\"%s\", [debug_info, export_all]), file:set_cwd(%s), f(%s), %s."
+		       "%s = c(\"%s\", [debug_info, export_all {d,'TEST'}]), file:set_cwd(%s), f(%s), %s."
 		     "%s = c(\"%s\"), file:set_cwd(%s), f(%s), %s."))
 		  tmpvar2 tmpvar
 		  dir
@@ -51,3 +53,5 @@
 (provide 'my_erlang_compile)
 
 (add-hook 'erlang-mode-hook 'my-erlang-compile)
+
+(run-mode-hooks)

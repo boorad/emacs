@@ -18,8 +18,8 @@
 (add-to-list 'load-path "~/dev/emacs/autosave") ;; Autosave config
 
 ;(require 'erlang_mode_config) ;; Loading Erlang mode (dubdub & general config)
-;(require 'erlang_mode_couch_config) ;; Loading Erlang mode (couchdb config)
-(require 'erlang_mode_dynomite_config) ;; Loading Erlang mode (dynomite config)
+(require 'erlang_mode_couch_config) ;; Loading Erlang mode (couchdb config)
+;(require 'erlang_mode_dynomite_config) ;; Loading Erlang mode (dynomite config)
 
 (require 'igrep) ;; igrep
 (autoload 'igrep "igrep"

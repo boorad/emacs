@@ -1,6 +1,6 @@
 (provide 'erlang_mode_couch_config)
 
-(add-to-list 'load-path "/opt/local/lib/erlang/lib/tools-2.6.3/emacs")
+(add-to-list 'load-path "/opt/local/lib/erlang/lib/tools-2.6.4/emacs")
 (require 'erlang-start)
 (setq erlang-indent-level 4)
 (add-to-list 'exec-path "/opt/local/lib/erlang/bin")
@@ -18,10 +18,12 @@
         '("-sname" "couchdb1"
           "-smp" "auto" "errlog_type" "error" "+K" "true"
           "+P" "250000"
+          "-D" "TEST=true"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/couchdb"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/mochiweb"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/ibrowse"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/cloudant"
+          "-pa" "/Users/brad/dev/erlang/dbcore/src/dynomite"
           ;"-env" "ERL_LIBS" "/Users/brad/dev/erlang/dbcore/src"
           "-couch_ini"
           "/Users/brad/dev/erlang/dbcore/etc/couchdb/default_dev.ini"
