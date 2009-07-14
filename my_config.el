@@ -59,7 +59,7 @@
   (revert-buffer t t t)
   )
 
-(global-set-key [f5] 'refresh-file)
+(global-set-key [f5] 'revert-buffer)
 
 
 ;; ;; from Roberto Saccon
