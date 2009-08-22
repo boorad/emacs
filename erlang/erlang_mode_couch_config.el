@@ -1,10 +1,19 @@
 (provide 'erlang_mode_couch_config)
 
+;; ;;; erlware-mode
+;; (setq load-path (cons "/Users/brad/dev/emacs/erlware-mode" load-path))
+;; (setq erlang-man-root-dir "/opt/local/lib/erlang")
+;; (setq exec-path (cons "/opt/local/lib/erlang/bin" exec-path))
+;; (require 'erlang-start)
+
+;;; erlang-mode from otp
 (add-to-list 'load-path "/opt/local/lib/erlang/lib/tools-2.6.4/emacs")
 (require 'erlang-start)
-(setq erlang-indent-level 4)
 (add-to-list 'exec-path "/opt/local/lib/erlang/bin")
 (setq erlang-root-dir "/opt/local/lib/erlang")
+
+(setq erlang-indent-level 4)
+(setq erlang-tab-always-indent t)
 
 (setq erlang-skel-mail-address "brad@cloudant.com")
 
@@ -24,6 +33,7 @@
           "-D" "TEST=true"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/couchdb"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/mochiweb"
+          "-pa" "/Users/brad/dev/erlang/dbcore/src/erlang-oauth"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/ibrowse"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/cloudant"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/dynomite/ebin"
@@ -34,7 +44,6 @@
           "/Users/brad/dev/erlang/dbcore/etc/couchdb/local_dev.ini"
           "/Users/brad/dev/erlang/dbcore/etc/couchdb/cluster.ini"
           "-pidfile" "/Users/brad/dev/erlang/dbcore/tmp/run/couchdb/couchdb.pid"
-          "-ping" "http://localhost:5984/_cluster" ;; attach to cluster
           "-setcookie" "doubledoozie" ;; clustering
           ;;"-s" "showroom" ;; this would start couch/showroom automatically
           ))
