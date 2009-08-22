@@ -46,6 +46,12 @@
 (require 'whitespace_config) ;; Loading whitespace
 (require 'autosave_config) ;; Configures autosaving
 
+;; haml/sass
+(add-to-list 'load-path "~/dev/emacs/haml") ;; haml config
+(require 'haml-mode)
+(require 'sass-mode)
+
+;; distel
 (distel-setup)
 
 ;; tab lovin'
