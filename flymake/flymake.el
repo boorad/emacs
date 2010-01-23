@@ -306,7 +306,10 @@ are the string substitutions (see `format')."
 (defun flymake-can-syntax-check-file (file-name)
   "Determine whether we can syntax check FILE-NAME.
 Return nil if we cannot, non-nil if we can."
-  (if (flymake-get-init-function file-name) t nil))
+  (print file-name)
+  (if file-name
+      (if (flymake-get-init-function file-name) t nil)
+    nil))
 
 (defun flymake-get-init-function (file-name)
   "Return init function to be used for the file."
