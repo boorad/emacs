@@ -1,5 +1,8 @@
 (provide 'my_config)
 
+;; are we in aquamacs or other emacs?
+(defvar *aquamacs-p* (boundp 'aquamacs-version))
+
 ;; debug elisp
 (setq debug-on-error t)
 
@@ -61,9 +64,17 @@
 (add-to-list 'exec-path "/opt/local/lib/erlang/bin")
 (setq erlang-root-dir "/opt/local/lib/erlang")
 
+;; get erlang shell to start in other window
+;(defvar inferior-erlang-display-buffer-any-frame 'raise)
+(add-hook 'erlang-shell-mode-hook
+          (lambda ()
+            (if (one-window-p)
+                (split-window-horizontally))
+            ;(when *aquamacs-p*
+            ;  (aquamacs-delete-window))
+            (set-window-buffer (other-window 1) inferior-erlang-buffer)))
+
 ;; fix for compiling to ../ebin
-;;(add-to-list 'load-path "my_erlang_compile")
-;;(require 'my_erlang_compile)
 (setq erlang-compile-outdir "../ebin")
 
 ;;; project-specific tweaks for Erlang
@@ -136,10 +147,15 @@ Return nil if we cannot, non-nil if we can."
 (add-to-list 'load-path "~/dev/emacs/python")
 (require 'my-python-compile)
 
+;; Clojure
+(add-to-list 'load-path "~/dev/emacs/clojure")
+(require 'clojure-mode)
+
 
 ;; Java
-(add-to-list 'load-path (expand-file-name "~/dev/emacs/java"))
-;(require 'my_java)
+(when *aquamacs-p*
+  (add-to-list 'load-path (expand-file-name "~/dev/emacs/java"))
+  (require 'my_java))
 
 
 (add-to-list 'load-path "~/dev/emacs/sql") ;; sql config
@@ -157,15 +173,30 @@ Return nil if we cannot, non-nil if we can."
 ;;(add-hook 'd-mode-hook (lambda () (dlint-minor-mode 1)))
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+
+ ;; case-sensitive find file
+ '(read-file-name-completion-ignore-case nil)
+
+ (when *aquamacs-p*
+   '(aquamacs-save-options-on-quit nil)
+   '(one-buffer-one-frame-mode nil nil (aquamacs-frame-setup)))
+ '(jde-jdk-registry (quote (("1.6.0_17" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/")))))
+
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(flymake-errline ((((class color)) (:background "DarkRed"))))
  '(flymake-warnline ((((class color)) (:background "DarkBlue")))))
 
 
 ;; final ui prefs
 (toggle-colors-black)
-(split-window-horizontally)
+(when *aquamacs-p*
+  (split-window-horizontally))

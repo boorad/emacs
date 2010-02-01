@@ -25,7 +25,7 @@
           "-pa" "/Users/brad/dev/erlang/dbcore/src/ibrowse"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/etap"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/showroom/ebin"
-          ;"-pa" "/Users/brad/dev/erlang/dbcore/src/cloudant" ; before 0.10.x
+          "-pa" "/Users/brad/dev/erlang/dbcore/src/erlang_js"
           "-pa" "/Users/brad/dev/erlang/dbcore/src/dynomite/ebin"
           "-pa" "/Users/brad/dev/erlang/bcrypt/lib/bcrypt/ebin"
           ;"-env" "ERL_LIBS" "/Users/brad/dev/erlang/dbcore/src"
