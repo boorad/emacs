@@ -11,31 +11,39 @@
   ;; load flymake
   (flymake-mode)
   ;; prevent annoying hang-on-compile
-  (defvar inferior-erlang-prompt-timeout t)
+  ;(defvar inferior-erlang-prompt-timeout t)
   ;; when starting an Erlang shell in Emacs, default in the node name
   (setq inferior-erlang-machine-options
         '("-name" "node1@node1.boorad.local"
-          "-smp" "auto" "errlog_type" "error" "+K" "true"
-          ;"+P" "250000"
+          "-smp" "auto"
+          "errlog_type" "error"
+          "+K" "true"
           "-D" "TEST"
           "-D" "PROF"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/couchdb"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/mochiweb"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/erlang-oauth"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/ibrowse"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/etap"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/showroom/ebin"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/erlang_js"
-          "-pa" "/Users/brad/dev/erlang/dbcore/src/dynomite/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/chttpd/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/couch/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/mochiweb/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/oauth/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/ibrowse/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/etap/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/mem3/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/rexi/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/fabric/ebin"
           "-pa" "/Users/brad/dev/erlang/bcrypt/lib/bcrypt/ebin"
-          ;"-env" "ERL_LIBS" "/Users/brad/dev/erlang/dbcore/src"
+          "-pa" "/Users/brad/dev/cloudant/scripts/devstart/ebin"
+          "-pa" "/Users/brad/dev/erlang/dbcore/apps/showroom/ebin"
           "-couch_ini"
-          "/Users/brad/dev/erlang/dbcore/etc/couchdb/default_dev.ini"
-          "/Users/brad/dev/erlang/dbcore/etc/couchdb/local_dev.ini"
-          "/Users/brad/dev/erlang/dbcore/etc/couchdb/cluster.ini"
-          "-pidfile" "/Users/brad/dev/erlang/dbcore/tmp/run/couchdb/couchdb.pid"
+          "/Users/brad/dev/erlang/dbcore/rel/cloudant-core/etc/default1.ini"
+          "-pidfile" "/srv/run/couchdb/couchdb1.pid"
+          ;; "-eval" "\"crypto:start()\""
+          ;; "-eval" "\"ssl:start()\""
+          ;; "-eval" "\"application:start(inets)\""
+          ;; "-eval" "\"application:start(oauth)\""
+          ;; "-eval" "\"application:start(mochiweb)\""
+          ;; "-eval" "\"application:start(sasl)\""
+          ;; "-eval" "\"application:start(ibrowse)\""
+          ;; ;"-eval" "\"showroom:start()\""
           "-setcookie" "doubledoozie" ;; clustering
-          ;;"-s" "showroom" ;; this would start couch/showroom automatically
           ))
 
   ;; tell distel to default to that node

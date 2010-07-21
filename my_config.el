@@ -1,5 +1,7 @@
 (provide 'my_config)
 
+(setq inhibit-splash-screen t)
+
 ;; are we in aquamacs or other emacs?
 (defvar *aquamacs-p* (boundp 'aquamacs-version))
 
@@ -29,6 +31,16 @@
 
 ;;(add-to-list 'default-frame-alist '(alpha . (100 70)))
 (add-to-list 'default-frame-alist '(alpha . (100 100)))
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/dev/emacs/elpa/package.el"))
+  (package-initialize))
 
 
 ;; Custom keys config
@@ -60,7 +72,7 @@
 
 ;; rest of erlang mode stmts
 (require 'erlang-start)
-(setq erlang-man-root-dir "/opt/local")
+(setq erlang-man-root-dir "/opt/local/share/man")
 (add-to-list 'exec-path "/opt/local/lib/erlang/bin")
 (setq erlang-root-dir "/opt/local/lib/erlang")
 
@@ -79,8 +91,9 @@
 
 ;;; project-specific tweaks for Erlang
 ;;(require 'default_config) ;; Loading Erlang mode (dubdub & general config)
-(require 'couch_config) ;; Loading Erlang mode (couchdb config)
-;;(require 'dynomite_config) ;; Loading Erlang mode (dynomite config)
+;;(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
+;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
+(require 'koth_config) ;; Loading Erlang mode (koth config)
 
 ;; distel
 (add-to-list 'load-path "~/dev/emacs/distel/elisp") ;; Distel package
@@ -184,7 +197,8 @@ Return nil if we cannot, non-nil if we can."
 
  (when *aquamacs-p*
    '(aquamacs-save-options-on-quit nil)
-   '(one-buffer-one-frame-mode nil nil (aquamacs-frame-setup)))
+   '(one-buffer-one-frame-mode nil nil (aquamacs-frame-setup))
+   '(read-file-name-completion-ignore-case nil))
  '(jde-jdk-registry (quote (("1.6.0_17" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/")))))
 
 (custom-set-faces
