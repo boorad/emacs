@@ -33,7 +33,7 @@
           "-pa" "/Users/brad/dev/cloudant/scripts/devstart/ebin"
           "-pa" "/Users/brad/dev/erlang/dbcore/apps/showroom/ebin"
           "-couch_ini"
-          "/Users/brad/dev/erlang/dbcore/rel/cloudant-core/etc/default1.ini"
+          "/Users/brad/dev/erlang/dbcore/rel/dbcore/etc/default1.ini"
           "-pidfile" "/srv/run/couchdb/couchdb1.pid"
           ;; "-eval" "\"crypto:start()\""
           ;; "-eval" "\"ssl:start()\""

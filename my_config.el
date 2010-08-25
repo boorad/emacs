@@ -89,11 +89,14 @@
 ;; fix for compiling to ../ebin
 (setq erlang-compile-outdir "../ebin")
 
+;; safe erlang indent level variable
+'(safe-local-variable-values (quote ((erlang-indent-level . 4))))
+
 ;;; project-specific tweaks for Erlang
 ;;(require 'default_config) ;; Loading Erlang mode (dubdub & general config)
-;;(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
+(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
 ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
-(require 'koth_config) ;; Loading Erlang mode (koth config)
+;;(require 'koth_config) ;; Loading Erlang mode (koth config)
 
 ;; distel
 (add-to-list 'load-path "~/dev/emacs/distel/elisp") ;; Distel package
@@ -141,6 +144,11 @@ Return nil if we cannot, non-nil if we can."
 (add-to-list 'load-path "~/dev/emacs/haml") ;; haml config
 (require 'haml-mode)
 (require 'sass-mode)
+
+
+;; undo-tree
+(add-to-list 'load-path "~/dev/emacs/undo")
+(require 'undo-tree)
 
 
 ;; tab lovin'
