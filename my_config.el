@@ -94,8 +94,9 @@
 
 ;;; project-specific tweaks for Erlang
 ;;(require 'default_config) ;; Loading Erlang mode (dubdub & general config)
-(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
+;;(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
 ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
+(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
 ;;(require 'koth_config) ;; Loading Erlang mode (koth config)
 
 ;; distel
