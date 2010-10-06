@@ -19,11 +19,7 @@
           "-smp" "auto"
           "errlog_type" "error"
           "+K" "true"
-          "-pa" "/Users/brad/dev/tv/qam_rm/ebin"
-          "-pa" "/Users/brad/dev/tv/qam_rm/deps/effigy/ebin"
-          "-pa" "/Users/brad/dev/tv/qam_rm/deps/amqp_client/ebin"
-          "-pa" "/Users/brad/dev/tv/qam_rm/deps/gen_bunny/ebin"
-          "-pa" "/Users/brad/dev/tv/monaco_erlang_utils/ebin"
+          "-env" "ERL_LIBS" "/Users/brad/dev/tv:/Users/brad/dev/tv/qam_rm/apps:/Users/brad/dev/tv/lscp/apps:/Users/brad/dev/tv/dsmcc_na/apps"
           "-setcookie" "doubledoozie" ;; clustering
           ))
 

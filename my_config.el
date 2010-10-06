@@ -67,8 +67,8 @@
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
 
 ;; Erlang mode to use
-(add-to-list 'load-path "~/dev/emacs/erlang/erlware-mode")  ; erlware
-;;(add-to-list 'load-path "/opt/local/lib/erlang/lib/tools-2.6.4/emacs") ; OTP
+;(add-to-list 'load-path "~/dev/emacs/erlang/erlware-mode")  ; erlware
+(add-to-list 'load-path "~/dev/emacs/erlang/erlang-mode") ; OTP symlink
 
 ;; rest of erlang mode stmts
 (require 'erlang-start)
@@ -88,6 +88,9 @@
 
 ;; fix for compiling to ../ebin
 (setq erlang-compile-outdir "../ebin")
+
+;; extra erlang compile options
+(setq erlang-compile-extra-opts (list (cons 'i "../include")))
 
 ;; safe erlang indent level variable
 '(safe-local-variable-values (quote ((erlang-indent-level . 4))))
