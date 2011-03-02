@@ -62,8 +62,7 @@
 (add-to-list 'load-path "~/dev/emacs/autosave")
 (require 'autosave_config) ;; Configures autosaving
 
-
-;; Erlang
+;;; Erlang
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
 
 ;; Erlang mode to use
@@ -71,10 +70,11 @@
 (add-to-list 'load-path "~/dev/emacs/erlang/erlang-mode") ; OTP symlink
 
 ;; rest of erlang mode stmts
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
-(setq erlang-man-root-dir "/opt/local/share/man")
-(add-to-list 'exec-path "/opt/local/lib/erlang/bin")
-(setq erlang-root-dir "/opt/local/lib/erlang")
+(require 'erlang-flymake)
+
 
 ;; get erlang shell to start in other window
 ;(defvar inferior-erlang-display-buffer-any-frame 'raise)
@@ -86,11 +86,9 @@
             ;  (aquamacs-delete-window))
             (set-window-buffer (other-window 1) inferior-erlang-buffer)))
 
-;; fix for compiling to ../ebin
-(setq erlang-compile-outdir "../ebin")
-
 ;; extra erlang compile options
 (setq erlang-compile-extra-opts (list (cons 'i "../include")))
+(setq erlang-compile-outdir "../ebin") ; for erlware, but otp version too?
 
 ;; safe erlang indent level variable
 '(safe-local-variable-values (quote ((erlang-indent-level . 4))))
@@ -108,16 +106,6 @@
 (distel-setup)
 
 
-;; flymake (now included in erlware-erlang mode)
-;(require 'flymake_config) ;; Loading flymake
-
-;; flymake hacks
-(defun flymake-can-syntax-check-file (file-name)
-  "Determine whether we can syntax check FILE-NAME.
-Return nil if we cannot, non-nil if we can."
-  (if file-name
-      (if (flymake-get-init-function file-name) t nil)
-    nil))
 
 
 ;; igrep
