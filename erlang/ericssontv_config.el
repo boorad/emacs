@@ -1,6 +1,6 @@
 (provide 'ericssontv_config)
 
-(setq erlang-indent-level 4)
+(setq erlang-indent-level 2)
 (setq erlang-tab-always-indent t)
 
 (setq erlang-skel-mail-address "brad@sankatygroup.com")
@@ -19,7 +19,7 @@
           "-smp" "auto"
           "errlog_type" "error"
           "+K" "true"
-          "-env" "ERL_LIBS" "/Users/brad/dev/tv:/Users/brad/dev/tv/qam_rm/apps:/Users/brad/dev/tv/lscp/apps:/Users/brad/dev/tv/dsmcc_na/apps"
+          ;; NOTE: ERL_LIBS is now handled with symlinks in ~/dev/active-erlang
           "-setcookie" "doubledoozie" ;; clustering
           ))
 
