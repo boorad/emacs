@@ -15,7 +15,7 @@
   ;; when starting an Erlang shell in Emacs, default in the node name
   (setq inferior-erlang-machine-options
         '(
-          ;; "-name" "node1@node1.boorad.local"
+          "-name" "brad@boorad.local"
           "-smp" "auto"
           "errlog_type" "error"
           "+K" "true"

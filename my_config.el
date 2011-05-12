@@ -87,8 +87,10 @@
             (set-window-buffer (other-window 1) inferior-erlang-buffer)))
 
 ;; extra erlang compile options
-(setq erlang-compile-extra-opts (list (cons 'i "../include")))
-(setq erlang-compile-outdir "../ebin") ; for erlware, but otp version too?
+;(setq erlang-compile-extra-opts (list (cons 'i (inferior-erlang-compile-includedir))))
+(setq erlang-compile-extra-opts (list 'debug_info))
+
+
 
 ;; safe erlang indent level variable
 '(safe-local-variable-values (quote ((erlang-indent-level . 4))))
@@ -160,6 +162,7 @@
 (add-to-list 'load-path "~/dev/emacs/python")
 (require 'my-python-compile)
 
+
 ;; Clojure
 (add-to-list 'load-path "~/dev/emacs/clojure")
 (require 'clojure-mode)
@@ -175,6 +178,9 @@
 (eval-after-load "sql"
   '(load-library "sql-indent"))
 
+
+;; irc
+(require 'erc)
 
 ;;; D mode
 ;(setq load-path (cons "/opt/local/share/emacs/site-lisp/d" load-path))

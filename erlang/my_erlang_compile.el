@@ -11,7 +11,9 @@
   (let* (
 	 (buffer-dir (file-name-directory (buffer-file-name)))
 	 (ebin (concat buffer-dir "../ebin/"))
-	 (dir (if (file-readable-p ebin) ebin buffer-dir))
+	 (ebindir (if (file-readable-p ebin) ebin buffer-dir))
+	 (incl (concat buffer-dir "../include/"))
+	 (incldir (if (file-readable-p incl) incl buffer-dir))
          (noext (substring (buffer-file-name) 0 -4))
          ;; Hopefully, noone else will ever use these...
          (tmpvar "Tmp7236")
@@ -24,15 +26,15 @@
 		   (if current-prefix-arg
 		       (format
                         (concat "c(\"%s\", "
-                                "[{outdir, \"%s\"}, "
+                                "[{outdir, \"%s\"}, {i, \"%s\"} "
                                 "debug_info, export_all, "
                                 "{d,'TEST'},  {d,'PROF'}]).")
-                        noext dir)
+                        noext ebindir incldir)
 		     (format
                       (concat "c(\"%s\", "
-                              "[{outdir, \"%s\"},  "
+                              "[{outdir, \"%s\"}, {i, \"%s\"} "
                               "{d,'TEST'},  {d,'PROF'}]).")
-                      noext dir))
+                      noext ebindir incldir))
 		 (format
 		  (concat
 		   "f(%s), {ok, %s} = file:get_cwd(), "
