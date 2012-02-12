@@ -1,4 +1,4 @@
-(provide 'koth_config)
+(provide 'sdutil_config)
 
 (setq erlang-indent-level 2)
 (setq erlang-tab-always-indent t)
@@ -8,9 +8,8 @@
 (setenv "ERL_LIBS"
         (concat
          (getenv "ERL_LIBS") ":"
-         "/Users/brad/dev/koth/erlauth/" ":"
-         "/Users/brad/dev/koth/koth/" ":"
-         "/Users/brad/dev/koth/koth/deps"))
+         "/Users/brad/dev/sdutil/apps/core/apps" ":"
+         "/Users/brad/dev/sdutil/apps/core/deps"))
 
 ;; erl params
 (defun my-erlang-mode-hook ()
@@ -20,7 +19,7 @@
   ;(defvar inferior-erlang-prompt-timeout t)
   ;; when starting an Erlang shell in Emacs, default in the node name
   (setq inferior-erlang-machine-options
-        '("-name" "koth@boorad.local"
+        '("-name" "sdutil@boorad.local"
           "-smp" "auto"
           "errlog_type" "error"
           "+K" "true"

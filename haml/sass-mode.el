@@ -4,11 +4,11 @@
 
 ;; Author: Nathan Weizenbaum
 ;; URL: http://github.com/nex3/haml/tree/master
-;; Version: 3.0.14
+;; Version: 3.0.15
 ;; Created: 2007-03-15
 ;; By: Nathan Weizenbaum
 ;; Keywords: markup, language, css
-;; Package-Requires: ((haml-mode "3.0.14"))
+;; Package-Requires: ((haml-mode "3.0.15"))
 
 ;;; Commentary:
 
@@ -20,6 +20,8 @@
 ;; your .emacs file:
 ;;
 ;; (require 'sass-mode)
+
+;; sass-mode requires haml-mode, which can be found at http://github.com/nex3/haml-mode.
 
 ;;; Code:
 
@@ -177,24 +179,6 @@ LIMIT is the limit of the search."
 
 ;; Constants
 
-;; Compile on save (SJA)
-
-(defun sass-save ()
-  (interactive)
-  (save-buffer)
-  (setq start (point))
-  (goto-char 0)
-  (when (string= (buffer-substring-no-properties 1 4) "//!")
-        (move-end-of-line 1)
-        (shell-command (buffer-substring-no-properties 4 (point))))
-  (goto-char start))
-;;  (shell-command (concat "sass " (buffer-file-name (current-buffer)) " > " (substring (buffer-file-name (current-buffer)) 0 -5) ".css.tmp && mv " (substring (buffer-file-name (current-buffer)) 0 -5) ".css.tmp " (substring (buffer-file-name (current-buffer)) 0 -5) ".css" )))
-
-(defvar sass-mode-map
-  (let ((map (make-sparse-keymap)) keys)
-    (define-key map "\C-x\C-s" #'sass-save)
-    map))
-
 ;; Mode setup
 
 ;;;###autoload
@@ -203,8 +187,8 @@ LIMIT is the limit of the search."
   (set-syntax-table sass-syntax-table)
   (setq font-lock-extend-region-functions
         '(font-lock-extend-region-wholelines font-lock-extend-region-multiline))
-  (setq font-lock-multiline nil)
-  (setq comment-start "/*")
+  (set (make-local-variable 'font-lock-multiline) nil)
+  (set (make-local-variable 'comment-start) "/*")
   (set (make-local-variable 'haml-indent-function) 'sass-indent-p)
   (set (make-local-variable 'haml-indent-offset) sass-indent-offset)
   (setq font-lock-defaults '(sass-font-lock-keywords t t)))
