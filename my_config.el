@@ -32,16 +32,6 @@
 ;;(add-to-list 'default-frame-alist '(alpha . (100 70)))
 (add-to-list 'default-frame-alist '(alpha . (100 100)))
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/dev/emacs/elpa/package.el"))
-  (package-initialize))
-
 
 ;; Custom keys config
 (add-to-list 'load-path "~/dev/emacs/custom_keys")
@@ -99,8 +89,9 @@
 ;;(require 'default_config) ;; Loading Erlang mode (dubdub & general config)
 ;;(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
 ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
-(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
+;;(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
 ;;(require 'koth_config) ;; Loading Erlang mode (koth config)
+(require 'heartbyte_config) ;; Loading Erlang mode (koth config)
 
 ;; distel
 (add-to-list 'load-path "~/dev/emacs/distel/elisp") ;; Distel package
@@ -168,12 +159,6 @@
 (require 'clojure-mode)
 
 
-;; Java
-(when *aquamacs-p*
-  (add-to-list 'load-path (expand-file-name "~/dev/emacs/java"))
-  (require 'my_java))
-
-
 (add-to-list 'load-path "~/dev/emacs/sql") ;; sql config
 (eval-after-load "sql"
   '(load-library "sql-indent"))
@@ -205,7 +190,6 @@
    '(aquamacs-save-options-on-quit nil)
    '(one-buffer-one-frame-mode nil nil (aquamacs-frame-setup))
    '(read-file-name-completion-ignore-case nil))
- '(jde-jdk-registry (quote (("1.6.0_17" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/")))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
