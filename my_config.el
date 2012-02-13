@@ -2,8 +2,8 @@
 
 (setq inhibit-splash-screen t)
 
-;; are we in aquamacs or other emacs?
-(defvar *aquamacs-p* (boundp 'aquamacs-version))
+;; are we in gui or terminal emacs?
+(defvar *gui-p* (window-system))
 
 ;; debug elisp
 (setq debug-on-error t)
@@ -32,6 +32,8 @@
 ;;(add-to-list 'default-frame-alist '(alpha . (100 70)))
 (add-to-list 'default-frame-alist '(alpha . (100 100)))
 
+;; case-sensitive file-name-completion
+(setq read-file-name-completion-ignore-case nil)
 
 ;; Custom keys config
 (add-to-list 'load-path "~/dev/emacs/custom_keys")
@@ -72,7 +74,7 @@
           (lambda ()
             (if (one-window-p)
                 (split-window-horizontally))
-            ;(when *aquamacs-p*
+            ;(when *gui-p*
             ;  (aquamacs-delete-window))
             (set-window-buffer (other-window 1) inferior-erlang-buffer)))
 
@@ -125,11 +127,16 @@
 (require 'highlight-80+)
 
 
-;; haml/sass
+;; haml
 (add-to-list 'load-path "~/dev/emacs/haml") ;; haml config
 (require 'haml-mode)
-(require 'sass-mode)
+;(require 'sass-mode)
 
+;; scss
+(add-to-list 'load-path (expand-file-name "~/dev/emacs/scss"))
+;(require 'scss-mode)
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; undo-tree
 (add-to-list 'load-path "~/dev/emacs/undo")
@@ -184,12 +191,7 @@
  ;; If there is more than one, they won't work right.
 
  ;; case-sensitive find file
- '(read-file-name-completion-ignore-case nil)
-
- (when *aquamacs-p*
-   '(aquamacs-save-options-on-quit nil)
-   '(one-buffer-one-frame-mode nil nil (aquamacs-frame-setup))
-   '(read-file-name-completion-ignore-case nil))
+ '(read-file-name-completion-ignore-case nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -199,8 +201,7 @@
  '(flymake-errline ((((class color)) (:background "DarkRed"))))
  '(flymake-warnline ((((class color)) (:background "DarkBlue")))))
 
-
 ;; final ui prefs
 (toggle-colors-black)
-(when *aquamacs-p*
+(when *gui-p*
   (split-window-horizontally))

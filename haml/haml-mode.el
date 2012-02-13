@@ -4,7 +4,7 @@
 
 ;; Author: Nathan Weizenbaum
 ;; URL: http://github.com/nex3/haml/tree/master
-;; Version: 3.0.14
+;; Version: 3.0.15
 ;; Created: 2007-03-08
 ;; By: Nathan Weizenbaum
 ;; Keywords: markup, language, html
@@ -23,7 +23,7 @@
 ;;; Code:
 
 (eval-when-compile (require 'cl))
-;(require 'ruby-mode)
+(require 'ruby-mode)
 
 ;; Additional (optional) libraries for fontification
 (require 'css-mode nil t)
@@ -73,7 +73,7 @@ a specific level to which the current line could be indented.")
   `(,(concat haml-tag-beg-re "[><]*[ \t]*$")
     "^[ \t]*[&!]?[-=~].*do[ \t]*\\(|.*|[ \t]*\\)?$"
     ,(concat "^[ \t]*[&!]?[-=~][ \t]*\\("
-             (regexp-opt '("if" "unless" "while" "until" "else"
+             (regexp-opt '("if" "unless" "while" "until" "else" "for"
                            "begin" "elsif" "rescue" "ensure" "when"))
              "\\)")
     "^[ \t]*/\\(\\[.*\\]\\)?[ \t]*$"
@@ -102,7 +102,7 @@ The line containing RE is matched, as well as all lines indented beneath it."
     (haml-highlight-ruby-tag              1 font-lock-preprocessor-face)
     (haml-highlight-ruby-script           1 font-lock-preprocessor-face)
     ("^!!!.*"                             0 font-lock-constant-face)
-    ("| *$"                               0 font-lock-string-face)))
+    ("\\s| *$"                            0 font-lock-string-face)))
 
 (defconst haml-filter-re "^[ \t]*:\\w+")
 (defconst haml-comment-re "^[ \t]*\\(?:-\\#\\|/\\)")
@@ -366,11 +366,13 @@ With ARG, do it that many times."
 
 ;; Mode setup
 
-;; Compile on save (SJA)
+;; Compile on save (Stefano Attardi)
+
 (defun haml-save ()
   (interactive)
   (save-buffer)
   (shell-command (concat "haml -f html5 " (buffer-file-name (current-buffer)) " > " (substring (buffer-file-name (current-buffer)) 0 -5) ".html.tmp && mv " (substring (buffer-file-name (current-buffer)) 0 -5) ".html.tmp " (substring (buffer-file-name (current-buffer)) 0 -5) ".html" )))
+
 
 (defvar haml-mode-syntax-table
   (let ((table (make-syntax-table)))
@@ -405,7 +407,7 @@ With ARG, do it that many times."
   (set (make-local-variable 'indent-line-function) 'haml-indent-line)
   (set (make-local-variable 'indent-region-function) 'haml-indent-region)
   (set (make-local-variable 'parse-sexp-lookup-properties) t)
-  (setq comment-start "-#")
+  (set (make-local-variable 'comment-start) "-#")
   (setq font-lock-defaults '((haml-font-lock-keywords) t t)))
 
 ;; Useful functions
