@@ -132,7 +132,7 @@
 (require 'haml-mode)
 ;(require 'sass-mode)
 
-;; scss
+;; sass/scss
 (add-to-list 'load-path (expand-file-name "~/dev/emacs/scss"))
 ;(require 'scss-mode)
 (autoload 'scss-mode "scss-mode")
