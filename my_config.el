@@ -15,6 +15,12 @@
 ;; no backup files
 (setq make-backup-files nil)
 
+;; Changes all yes/no questions to y/n type
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; delete selection when typing
+(delete-selection-mode 1)
+
 (global-set-key [f5] 'revert-buffer)
 
 ;; to get rid of ^M chars
