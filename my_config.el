@@ -11,6 +11,9 @@
 ;; numbering
 (line-number-mode 1)
 (column-number-mode 1)
+(add-to-list 'load-path "~/dev/emacs/linum")
+(require 'linum)
+(global-linum-mode 1)
 
 ;; no backup files
 (setq make-backup-files nil)
