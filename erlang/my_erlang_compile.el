@@ -1,3 +1,8 @@
+(defun build-include (i)
+  (let
+      (buffer-dir (file-name-directory (buffer-file-name)))
+    (format ", {i, \"%s\"}" (concat buffer-dir i))))
+
 (defun my-erlang-compile ()
   "Compile the file in the current buffer."
 
@@ -12,8 +17,10 @@
 	 (buffer-dir (file-name-directory (buffer-file-name)))
 	 (ebin (concat buffer-dir "../ebin/"))
 	 (ebindir (if (file-readable-p ebin) ebin buffer-dir))
-	 (incl (concat buffer-dir "../include/"))
-	 (incldir (if (file-readable-p incl) incl buffer-dir))
+	 (incl (concat
+                "{i, \"../include\"}"
+                (mapconcat 'build-include erlang-include-list "")))
+;	 (incldir (if (file-readable-p incl) incl buffer-dir))
          (noext (substring (buffer-file-name) 0 -4))
          ;; Hopefully, noone else will ever use these...
          (tmpvar "Tmp7236")
@@ -26,21 +33,21 @@
 		   (if current-prefix-arg
 		       (format
                         (concat "c(\"%s\", "
-                                "[{outdir, \"%s\"}, {i, \"%s\"} "
+                                "[{outdir, \"%s\"}, %s, "
                                 "debug_info, export_all, "
-                                "{d,'TEST'},  {d,'PROF'}]).")
-                        noext ebindir incldir)
+                                "{d,'TEST'}, {d,'PROF'}]).")
+                        noext ebindir incl)
 		     (format
                       (concat "c(\"%s\", "
-                              "[{outdir, \"%s\"}, {i, \"%s\"} "
+                              "[{outdir, \"%s\"}, %s, "
                               "{d,'TEST'},  {d,'PROF'}]).")
-                      noext ebindir incldir))
+                      noext ebindir incl))
 		 (format
 		  (concat
 		   "f(%s), {ok, %s} = file:get_cwd(), "
 		   "file:set_cwd(\"%s\"), "
 		   (if current-prefix-arg
-		       (concat "%s = c(\"%s\", [debug_info, export_all "
+		       (concat "%s = c(\"%s\", [debug_info, export_all, "
                                "{d,'TEST'}]), "
                                "file:set_cwd(%s), f(%s), %s."
                                "%s = c(\"%s\"), file:set_cwd(%s), f(%s), %s.")))

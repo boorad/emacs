@@ -18,9 +18,6 @@
           "-smp" "auto"
           "errlog_type" "error"
           "+K" "true"
-          "-pa" "/Users/brad/dev/erlang/koth/ebin"
-          "-pa" "/Users/brad/dev/erlang/koth/deps/mochiweb/ebin"
-          "-pa" "/Users/brad/dev/erlang/koth/deps/webmachine/ebin"
           "-setcookie" "doubledoozie"
           ))
 

@@ -76,21 +76,11 @@
 (require 'erlang-start)
 (require 'erlang-flymake)
 
-
-;; get erlang shell to start in other window
-;(defvar inferior-erlang-display-buffer-any-frame 'raise)
-(add-hook 'erlang-shell-mode-hook
-          (lambda ()
-            (if (one-window-p)
-                (split-window-horizontally))
-            ;(when *gui-p*
-            ;  (aquamacs-delete-window))
-            (set-window-buffer (other-window 1) inferior-erlang-buffer)))
-
 ;; extra erlang compile options
-;(setq erlang-compile-extra-opts (list (cons 'i (inferior-erlang-compile-includedir))))
-(setq erlang-compile-extra-opts (list 'debug_info))
-
+;;(setq erlang-compile-extra-opts
+;;      (list
+;;       (cons 'i (inferior-erlang-compile-includedir))
+;;       'debug_info))
 
 
 ;; safe erlang indent level variable
@@ -102,7 +92,21 @@
 ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
 ;;(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
 ;;(require 'koth_config) ;; Loading Erlang mode (koth config)
-(require 'heartbyte_config) ;; Loading Erlang mode (koth config)
+;;(require 'heartbyte_config)
+(require 'reflex_config)
+
+;(add-to-list 'load-path "~/dev/emacs/erlang/my_erlang_compile")
+(require 'my_erlang_compile)
+
+;; get erlang shell to start in other window
+;(defvar inferior-erlang-display-buffer-any-frame 'raise)
+(add-hook 'erlang-shell-mode-hook
+          (lambda ()
+            (if (one-window-p)
+                (split-window-horizontally))
+            ;(when *gui-p*
+            ;  (aquamacs-delete-window))
+            (set-window-buffer (other-window 1) inferior-erlang-buffer)))
 
 ;; distel
 (add-to-list 'load-path "~/dev/emacs/distel/elisp") ;; Distel package
