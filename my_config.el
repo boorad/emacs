@@ -12,8 +12,9 @@
 (line-number-mode 1)
 (column-number-mode 1)
 (add-to-list 'load-path "~/dev/emacs/linum")
-(require 'linum)
+(require 'linum+)
 (global-linum-mode 1)
+(setq linum-format "%d ")
 
 ;; no backup files
 (setq make-backup-files nil)
@@ -48,6 +49,15 @@
 (add-to-list 'load-path "~/dev/emacs/custom_keys")
 (require 'custom_keys_config) ;; custom key bindings
 
+;; Popup
+(add-to-list 'load-path "~/dev/emacs/popup")
+(require 'popup)
+
+;; Autocomplete mode
+(add-to-list 'load-path "~/dev/emacs/auto-complete")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/dev/emacs/auto-complete/dict")
+(ac-config-default)
 
 ;; magit mode
 (add-to-list 'load-path "~/dev/emacs/magit")
@@ -97,6 +107,9 @@
 
 ;(add-to-list 'load-path "~/dev/emacs/erlang/my_erlang_compile")
 (require 'my_erlang_compile)
+
+; Erlang auto-complete
+(add-to-list 'ac-modes 'erlang-mode)
 
 ;; get erlang shell to start in other window
 ;(defvar inferior-erlang-display-buffer-any-frame 'raise)
