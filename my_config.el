@@ -33,6 +33,10 @@
 
 (setq mac-option-modifier 'meta)
 
+;; highlight current line
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "#323232")
+
 ;; color-theme
 (add-to-list 'load-path "~/dev/emacs/color-theme") ;; Configuration for color-theme
 
