@@ -1,6 +1,7 @@
 (provide 'my_config)
 
 (setq inhibit-splash-screen t)
+(menu-bar-mode -1)
 
 ;; are we in gui or terminal emacs?
 (defvar *gui-p* (window-system))
@@ -8,11 +9,19 @@
 ;; debug elisp
 (setq debug-on-error t)
 
+;; mouse mode
+(require 'mouse)
+(xterm-mouse-mode t)
+(defun track-mouse (e))
+
+;; popup
+(add-to-list 'load-path "~/dev/emacs/popup")
+
 ;; numbering
 (line-number-mode 1)
 (column-number-mode 1)
 (add-to-list 'load-path "~/dev/emacs/linum")
-(require 'linum+)
+(require 'linum)
 (global-linum-mode 1)
 (setq linum-format "%d ")
 
@@ -39,6 +48,22 @@
 
 ;; color-theme
 (add-to-list 'load-path "~/dev/emacs/color-theme") ;; Configuration for color-theme
+(require 'color-theme)
+(color-theme-initialize)
+
+(defun toggle-colors-white ()
+  (interactive)
+  (color-theme-tiger-xcode)
+  (custom-set-faces
+   '(flymake-errline ((((class color)) (:background "Red"))))
+   '(flymake-warnline ((((class color)) (:background "Blue"))))))
+
+(defun toggle-colors-black ()
+  (interactive)
+  (color-theme-dark-laptop)
+  (custom-set-faces
+   '(flymake-errline ((((class color)) (:background "DarkRed"))))
+   '(flymake-warnline ((((class color)) (:background "DarkBlue"))))))
 
 ;; Tweaking editing environment
 (setq-default show-trailing-whitespace t)
@@ -106,8 +131,8 @@
 ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
 ;;(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
 ;;(require 'koth_config) ;; Loading Erlang mode (koth config)
-;;(require 'heartbyte_config)
-(require 'reflex_config)
+(require 'heartbyte_config)
+;;(require 'reflex_config)
 
 ;(add-to-list 'load-path "~/dev/emacs/erlang/my_erlang_compile")
 (require 'my_erlang_compile)
