@@ -1,6 +1,7 @@
 (provide 'my_config)
 
 (setq inhibit-splash-screen t)
+(menu-bar-mode -1)
 
 ;; are we in gui or terminal emacs?
 (defvar *gui-p* (window-system))
@@ -8,11 +9,20 @@
 ;; debug elisp
 (setq debug-on-error t)
 
+;; mouse mode
+(require 'mouse)
+(xterm-mouse-mode t)
+(defun track-mouse (e))
+
+;; popup
+(add-to-list 'load-path "~/dev/emacs/popup")
+(require 'popup)
+
 ;; numbering
 (line-number-mode 1)
 (column-number-mode 1)
 (add-to-list 'load-path "~/dev/emacs/linum")
-(require 'linum+)
+(require 'linum)
 (global-linum-mode 1)
 (setq linum-format "%d ")
 
@@ -39,6 +49,30 @@
 
 ;; color-theme
 (add-to-list 'load-path "~/dev/emacs/color-theme") ;; Configuration for color-theme
+(require 'color-theme)
+(color-theme-initialize)
+
+(defun toggle-colors-white ()
+  (interactive)
+  (color-theme-tiger-xcode)
+  (custom-set-faces
+   '(flymake-errline ((((class color)) (:background "Red"))))
+   '(flymake-warnline ((((class color)) (:background "Blue"))))))
+
+(defun toggle-colors-black ()
+  (interactive)
+  (color-theme-dark-laptop)
+  (custom-set-faces
+   '(flymake-errline ((((class color)) (:background "DarkRed"))))
+   '(flymake-warnline ((((class color)) (:background "DarkBlue"))))))
+
+;; custom ui colors - optimized for terminal mode
+(set-face-background 'modeline "#333333")
+(set-face-background 'mode-line-buffer-id "#333333")
+(set-face-foreground 'mode-line "#999999")
+(set-face-foreground 'mode-line-buffer-id "#ffffff")
+(set-face-background 'modeline-inactive "#1C1C1C")
+(set-face-foreground 'vertical-border "#1C1C1C")
 
 ;; Tweaking editing environment
 (setq-default show-trailing-whitespace t)
@@ -53,29 +87,54 @@
 (add-to-list 'load-path "~/dev/emacs/custom_keys")
 (require 'custom_keys_config) ;; custom key bindings
 
-;; Popup
-(add-to-list 'load-path "~/dev/emacs/popup")
-(require 'popup)
-
 ;; Autocomplete mode
 (add-to-list 'load-path "~/dev/emacs/auto-complete")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/dev/emacs/auto-complete/dict")
 (ac-config-default)
 
+;; Markdown mode
+(add-to-list 'load-path "~/dev/emacs/markdown-mode")
+(require 'markdown-mode)
+(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+
 ;; magit mode
 (add-to-list 'load-path "~/dev/emacs/magit")
 (require 'magit) ;; Loading magit
-
 
 ;; Whitespace package
 (add-to-list 'load-path "~/dev/emacs/whitespace")
 (require 'whitespace_config) ;; Loading whitespace
 
-
 ;; Autosave config
 (add-to-list 'load-path "~/dev/emacs/autosave")
 (require 'autosave_config) ;; Configures autosaving
+
+;; rvm
+(add-to-list 'load-path "~/dev/emacs/rvm")
+(require 'rvm)
+
+;; Ruby mode
+(add-to-list 'load-path "~/dev/emacs/ruby-mode")
+(require 'ruby-mode)
+(require 'inf-ruby)
+
+;; RSense
+(add-to-list 'load-path "~/dev/emacs/rsense")
+(require 'rsense)
+(setq rsense-home "~/dev/emacs/rsense/rsense") ; this is a symlink to rsense install dir
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-rsense-method)
+            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
+
+;; Rspec
+(add-to-list 'load-path "~/dev/emacs/rspec-mode")
+(require 'rspec-mode)
+
+;; Go mode
+(add-to-list 'load-path "~/dev/emacs/go")
+(require 'go-mode)
 
 ;;; Erlang
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
@@ -106,8 +165,8 @@
 ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
 ;;(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
 ;;(require 'koth_config) ;; Loading Erlang mode (koth config)
-;;(require 'heartbyte_config)
-(require 'reflex_config)
+(require 'heartbyte_config)
+;;(require 'reflex_config)
 
 ;(add-to-list 'load-path "~/dev/emacs/erlang/my_erlang_compile")
 (require 'my_erlang_compile)
@@ -130,9 +189,6 @@
 (require 'distel) ;; Loading distel
 (distel-setup)
 
-
-
-
 ;; igrep
 (add-to-list 'load-path "~/dev/emacs/igrep") ;; igrep
 (require 'igrep) ;; igrep
@@ -151,12 +207,6 @@
 (autoload 'igrep-insinuate "igrep"
   "Define `grep' aliases for the corresponding `igrep' commands." t)
 
-
-;; highlight-80+
-(add-to-list 'load-path "~/dev/emacs/highlight-80+")
-(require 'highlight-80+)
-
-
 ;; haml
 (add-to-list 'load-path "~/dev/emacs/haml") ;; haml config
 (require 'haml-mode)
@@ -172,11 +222,9 @@
 (add-to-list 'load-path "~/dev/emacs/undo")
 (require 'undo-tree)
 
-
 ;; tab lovin'
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default tab-width 8) ; set tab width to 4 for all buffers
-
 
 ;; refresh file
 ;; from http://www.stokebloke.com/wordpress/2008/04/17/emacs-refresh-f5-key/
@@ -185,24 +233,17 @@
   (revert-buffer t t t)
   )
 
-
 ;; Python
 (add-to-list 'load-path "~/dev/emacs/python")
 (require 'my-python-compile)
-
 
 ;; Clojure
 (add-to-list 'load-path "~/dev/emacs/clojure")
 (require 'clojure-mode)
 
-
 (add-to-list 'load-path "~/dev/emacs/sql") ;; sql config
 (eval-after-load "sql"
   '(load-library "sql-indent"))
-
-
-;; irc
-(require 'erc)
 
 ;;; D mode
 ;(setq load-path (cons "/opt/local/share/emacs/site-lisp/d" load-path))

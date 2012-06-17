@@ -1,22 +1,5 @@
 (provide 'custom_keys_config)
 
-(require 'color-theme)
-(color-theme-initialize)
-
-(defun toggle-colors-white ()
-  (interactive)
-  (color-theme-tiger-xcode)
-  (custom-set-faces
-   '(flymake-errline ((((class color)) (:background "Red"))))
-   '(flymake-warnline ((((class color)) (:background "Blue"))))))
-
-(defun toggle-colors-black ()
-  (interactive)
-  (color-theme-dark-laptop)
-  (custom-set-faces
-   '(flymake-errline ((((class color)) (:background "DarkRed"))))
-   '(flymake-warnline ((((class color)) (:background "DarkBlue"))))))
-
 ;; Switches buffers between two Emacs windows
 ;; Obtained from http://www.emacswiki.org/cgi-bin/wiki?SwitchingBuffers#toc5
 (defun transpose-buffers (arg)
