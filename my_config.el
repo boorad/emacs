@@ -114,6 +114,10 @@
 (require 'ruby-mode)
 (require 'inf-ruby)
 
+;; Rspec
+(add-to-list 'load-path "~/dev/emacs/rspec-mode")
+(require 'rspec-mode)
+
 ;;; Erlang
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
 
