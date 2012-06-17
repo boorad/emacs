@@ -114,6 +114,15 @@
 (require 'ruby-mode)
 (require 'inf-ruby)
 
+;; RSense
+(add-to-list 'load-path "~/dev/emacs/rsense")
+(require 'rsense)
+(setq rsense-home "~/dev/emacs/rsense/rsense") ; this is a symlink to rsense install dir
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-rsense-method)
+            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
+
 ;; Rspec
 (add-to-list 'load-path "~/dev/emacs/rspec-mode")
 (require 'rspec-mode)
