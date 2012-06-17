@@ -127,6 +127,10 @@
 (add-to-list 'load-path "~/dev/emacs/rspec-mode")
 (require 'rspec-mode)
 
+;; Go mode
+(add-to-list 'load-path "~/dev/emacs/go")
+(require 'go-mode)
+
 ;;; Erlang
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
 
