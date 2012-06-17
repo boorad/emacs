@@ -105,6 +105,10 @@
 (add-to-list 'load-path "~/dev/emacs/autosave")
 (require 'autosave_config) ;; Configures autosaving
 
+;; rvm
+(add-to-list 'load-path "~/dev/emacs/rvm")
+(require 'rvm)
+
 ;;; Erlang
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
 
