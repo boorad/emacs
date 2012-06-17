@@ -93,6 +93,11 @@
 (add-to-list 'ac-dictionary-directories "~/dev/emacs/auto-complete/dict")
 (ac-config-default)
 
+;; Markdown mode
+(add-to-list 'load-path "~/dev/emacs/markdown-mode")
+(require 'markdown-mode)
+(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+
 ;; magit mode
 (add-to-list 'load-path "~/dev/emacs/magit")
 (require 'magit) ;; Loading magit
