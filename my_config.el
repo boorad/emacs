@@ -65,6 +65,14 @@
    '(flymake-errline ((((class color)) (:background "DarkRed"))))
    '(flymake-warnline ((((class color)) (:background "DarkBlue"))))))
 
+;; custom ui colors - optimized for terminal mode
+(set-face-background 'modeline "#333333")
+(set-face-background 'mode-line-buffer-id "#333333")
+(set-face-foreground 'mode-line "#999999")
+(set-face-foreground 'mode-line-buffer-id "#ffffff")
+(set-face-background 'modeline-inactive "#1C1C1C")
+(set-face-foreground 'vertical-border "#1C1C1C")
+
 ;; Tweaking editing environment
 (setq-default show-trailing-whitespace t)
 
