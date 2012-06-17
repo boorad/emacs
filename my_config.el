@@ -109,6 +109,11 @@
 (add-to-list 'load-path "~/dev/emacs/rvm")
 (require 'rvm)
 
+;; Ruby mode
+(add-to-list 'load-path "~/dev/emacs/ruby-mode")
+(require 'ruby-mode)
+(require 'inf-ruby)
+
 ;;; Erlang
 (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
 
