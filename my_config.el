@@ -16,6 +16,7 @@
 
 ;; popup
 (add-to-list 'load-path "~/dev/emacs/popup")
+(require 'popup)
 
 ;; numbering
 (line-number-mode 1)
@@ -86,10 +87,6 @@
 (add-to-list 'load-path "~/dev/emacs/custom_keys")
 (require 'custom_keys_config) ;; custom key bindings
 
-;; Popup
-(add-to-list 'load-path "~/dev/emacs/popup")
-(require 'popup)
-
 ;; Autocomplete mode
 (add-to-list 'load-path "~/dev/emacs/auto-complete")
 (require 'auto-complete-config)
@@ -100,11 +97,9 @@
 (add-to-list 'load-path "~/dev/emacs/magit")
 (require 'magit) ;; Loading magit
 
-
 ;; Whitespace package
 (add-to-list 'load-path "~/dev/emacs/whitespace")
 (require 'whitespace_config) ;; Loading whitespace
-
 
 ;; Autosave config
 (add-to-list 'load-path "~/dev/emacs/autosave")
@@ -163,9 +158,6 @@
 (require 'distel) ;; Loading distel
 (distel-setup)
 
-
-
-
 ;; igrep
 (add-to-list 'load-path "~/dev/emacs/igrep") ;; igrep
 (require 'igrep) ;; igrep
@@ -184,12 +176,6 @@
 (autoload 'igrep-insinuate "igrep"
   "Define `grep' aliases for the corresponding `igrep' commands." t)
 
-
-;; highlight-80+
-(add-to-list 'load-path "~/dev/emacs/highlight-80+")
-(require 'highlight-80+)
-
-
 ;; haml
 (add-to-list 'load-path "~/dev/emacs/haml") ;; haml config
 (require 'haml-mode)
@@ -205,11 +191,9 @@
 (add-to-list 'load-path "~/dev/emacs/undo")
 (require 'undo-tree)
 
-
 ;; tab lovin'
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default tab-width 8) ; set tab width to 4 for all buffers
-
 
 ;; refresh file
 ;; from http://www.stokebloke.com/wordpress/2008/04/17/emacs-refresh-f5-key/
@@ -218,24 +202,17 @@
   (revert-buffer t t t)
   )
 
-
 ;; Python
 (add-to-list 'load-path "~/dev/emacs/python")
 (require 'my-python-compile)
-
 
 ;; Clojure
 (add-to-list 'load-path "~/dev/emacs/clojure")
 (require 'clojure-mode)
 
-
 (add-to-list 'load-path "~/dev/emacs/sql") ;; sql config
 (eval-after-load "sql"
   '(load-library "sql-indent"))
-
-
-;; irc
-(require 'erc)
 
 ;;; D mode
 ;(setq load-path (cons "/opt/local/share/emacs/site-lisp/d" load-path))
