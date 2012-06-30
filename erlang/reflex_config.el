@@ -24,11 +24,11 @@
   ;(defvar inferior-erlang-prompt-timeout t)
   ;; when starting an Erlang shell in Emacs, default in the node name
   (setq inferior-erlang-machine-options
-        '("-name" "reflex@boorad.local"
+        '("-name" "reflex@boorad-2.local"
           "-smp" "auto"
           "errlog_type" "error"
           "+K" "true"
-          "-setcookie" "doubledoozie"
+          "-setcookie" "123456"
           ))
 
   ;; tell distel to default to that node
