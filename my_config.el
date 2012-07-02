@@ -5,6 +5,9 @@
 ;; are we in gui or terminal emacs?
 (defvar *gui-p* (window-system))
 
+;; mouse
+(xterm-mouse-mode 1)
+
 ;; debug elisp
 (setq debug-on-error t)
 
