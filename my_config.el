@@ -30,6 +30,12 @@
 
 (global-set-key [f5] 'revert-buffer)
 
+;; mouse scrolling
+(defun up-slightly () (interactive) (scroll-up 3))
+(defun down-slightly () (interactive) (scroll-down 3))
+(global-set-key (kbd "<mouse-4>") 'down-slightly)
+(global-set-key (kbd "<mouse-5>") 'up-slightly)
+
 ;; to get rid of ^M chars
 ;(add-hook 'comint-output-filter-functions
 ;          'comint-strip-ctrl-m)
@@ -109,8 +115,8 @@
 ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
 ;;(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
 ;;(require 'koth_config) ;; Loading Erlang mode (koth config)
-;;(require 'heartbyte_config)
-(require 'reflex_config)
+(require 'heartbyte_config)
+;;(require 'reflex_config)
 
 ;(add-to-list 'load-path "~/dev/emacs/erlang/my_erlang_compile")
 (require 'my_erlang_compile)
@@ -236,5 +242,3 @@
 
 ;; final ui prefs
 (toggle-colors-black)
-(when *gui-p*
-  (split-window-horizontally))

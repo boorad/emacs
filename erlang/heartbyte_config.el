@@ -5,7 +5,20 @@
 
 (setq erlang-skel-mail-address "brad@sankatygroup.com")
 
-;; erl params for dynomite
+;;(setq erlang-include-list ())
+(setq erlang-include-list
+      (list
+       "/Users/brad/dev/heartbyte/collecterl/apps"
+       "/Users/brad/dev/heartbyte/collecterl/deps"
+       ))
+
+
+
+(defvar erlang-compile-extra-opts
+  '(bin_opt_info debug_info (i . "../include") (i . "../deps") (i . "../../") (i . "../../../deps")))
+
+
+;; erl params
 (add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
 (defun my-erlang-mode-hook ()
   ;; load flymake
