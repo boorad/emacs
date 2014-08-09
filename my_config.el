@@ -177,6 +177,12 @@
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
+;; less
+(add-to-list 'load-path "~/dev/emacs/less-css") ;; less config
+(setq exec-path (cons (expand-file-name "~/.rvm/gems/ruby-1.9.3-p545/bin") exec-path))
+(require 'less-css-mode)
+(setq less-css-compile-at-save t)
+
 ;; undo-tree
 (add-to-list 'load-path "~/dev/emacs/undo")
 (require 'undo-tree)
