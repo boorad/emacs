@@ -216,6 +216,22 @@
   '(load-library "sql-indent"))
 
 
+;; Puppet
+(add-to-list 'load-path "~/dev/emacs/puppet")
+(require 'puppet-mode)
+
+;; PHP
+(add-to-list 'load-path "~/dev/emacs/php")
+(require 'php-mode)
+
+;; S - string manipulation
+(add-to-list 'load-path "~/dev/emacs/s")
+(require 's)
+
+;; Gradle
+(add-to-list 'load-path "~/dev/emacs/gradle")
+(require 'gradle-mode)
+
 ;; irc
 (require 'erc)
 
