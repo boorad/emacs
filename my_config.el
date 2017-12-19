@@ -86,58 +86,59 @@
 (add-to-list 'load-path "~/dev/emacs/autosave")
 (require 'autosave_config) ;; Configures autosaving
 
-;;; Erlang
-(add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
+;; ;;; Erlang
+;; (add-to-list 'load-path "~/dev/emacs/erlang") ;; Configurations for Erlang mode
 
-;; Erlang mode to use
-;(add-to-list 'load-path "~/dev/emacs/erlang/erlware-mode")  ; erlware
-(add-to-list 'load-path "~/dev/emacs/erlang/erlang-mode") ; OTP symlink
+;; ;; Erlang mode to use
+;; ;(add-to-list 'load-path "~/dev/emacs/erlang/erlware-mode")  ; erlware
+;; (add-to-list 'load-path "~/dev/emacs/erlang/erlang-mode") ; OTP symlink
 
-;; rest of erlang mode stmts
-(setq erlang-root-dir "/usr/local/lib/erlang")
-(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
-(require 'erlang-start)
-(require 'erlang-flymake)
+;; ;; rest of erlang mode stmts
+;; (setq erlang-root-dir "/usr/local/lib/erlang")
+;; (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+;; (require 'erlang-start)
+;; (require 'erlang-flymake)
 
-;; extra erlang compile options
-;;(setq erlang-compile-extra-opts
-;;      (list
-;;       (cons 'i (inferior-erlang-compile-includedir))
-;;       'debug_info))
+;; ;; extra erlang compile options
+;; ;;(setq erlang-compile-extra-opts
+;; ;;      (list
+;; ;;       (cons 'i (inferior-erlang-compile-includedir))
+;; ;;       'debug_info))
 
 
-;; safe erlang indent level variable
-'(safe-local-variable-values (quote ((erlang-indent-level . 4))))
+;; ;; safe erlang indent level variable
+;; '(safe-local-variable-values (quote ((erlang-indent-level . 4))))
+;; ||#
 
-;;; project-specific tweaks for Erlang
-;;(require 'default_config) ;; Loading Erlang mode (dubdub & general config)
-;;(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
-;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
-;;(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
-;;(require 'koth_config) ;; Loading Erlang mode (koth config)
-(require 'heartbyte_config)
-;;(require 'reflex_config)
+;; ;;; project-specific tweaks for Erlang
+;; ;;(require 'default_config) ;; Loading Erlang mode (dubdub & general config)
+;; ;;(require 'couch_config) ;; Loading Erlang mode (couchdb/cloudant config)
+;; ;;(require 'ditz_config) ;; Loading Erlang mode (itests config)
+;; ;;(require 'ericssontv_config) ;; Loading Erlang mode (ericsson tv config)
+;; ;;(require 'koth_config) ;; Loading Erlang mode (koth config)
+;; (require 'heartbyte_config)
+;; ;;(require 'reflex_config)
 
-;(add-to-list 'load-path "~/dev/emacs/erlang/my_erlang_compile")
-(require 'my_erlang_compile)
+;; ;(add-to-list 'load-path "~/dev/emacs/erlang/my_erlang_compile")
+;; (require 'my_erlang_compile)
 
-; Erlang auto-complete
-(add-to-list 'ac-modes 'erlang-mode)
+;; ; Erlang auto-complete
+;; (add-to-list 'ac-modes 'erlang-mode)
 
-;; get erlang shell to start in other window
-;(defvar inferior-erlang-display-buffer-any-frame 'raise)
-(add-hook 'erlang-shell-mode-hook
-          (lambda ()
-            (if (one-window-p)
-                (split-window-horizontally))
-            ;(when *gui-p*
-            ;  (aquamacs-delete-window))
-            (set-window-buffer (other-window 1) inferior-erlang-buffer)))
+;; ;; get erlang shell to start in other window
+;; ;(defvar inferior-erlang-display-buffer-any-frame 'raise)
+;; (add-hook 'erlang-shell-mode-hook
+;;           (lambda ()
+;;             (if (one-window-p)
+;;                 (split-window-horizontally))
+;;             ;(when *gui-p*
+;;             ;  (aquamacs-delete-window))
+;;             (set-window-buffer (other-window 1) inferior-erlang-buffer)))
 
-;; distel
-(add-to-list 'load-path "~/dev/emacs/distel/elisp") ;; Distel package
-(require 'distel) ;; Loading distel
-(distel-setup)
+;; ;; distel
+;; (add-to-list 'load-path "~/dev/emacs/distel/elisp") ;; Distel package
+;; (require 'distel) ;; Loading distel
+;; (distel-setup)
 
 
 
